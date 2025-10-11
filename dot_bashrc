@@ -123,7 +123,3 @@ fi
 # Starship
 # eval "$(starship init bash)"
 
-
-
-. "$HOME/.local/bin/env"
-alias config='/usr/bin/git --git-dir=/home/t745346/.cfg/ --work-tree=/home/t745346'
