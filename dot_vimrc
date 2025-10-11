@@ -1,0 +1,12 @@
+set nocompatible          "Disable Vi-compatible mode
+set number                "Sets line numbers
+set tabstop=4             "Tab stops
+set shiftwidth=4
+set expandtab             "Converts tabs to spaces
+
+set hlsearch
+
+set t_Co=256
+colorscheme habamax
+
+set wildmenu
