@@ -10,3 +10,5 @@ set t_Co=256
 colorscheme habamax
 
 set wildmenu
+
+syntax on
