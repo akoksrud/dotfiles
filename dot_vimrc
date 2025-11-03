@@ -12,3 +12,6 @@ colorscheme habamax
 set wildmenu
 
 syntax on
+
+set cursorline
+set cursorcolumn
