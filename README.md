@@ -9,9 +9,21 @@ https://www.chezmoi.io/
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 ```
 
-### Update your dotfiles
+### Chezmoi commands
 ```bash
+# Download dotfiles from repo
 chezmoi update
+
+#Edit files
+chezmoi edit $FILE
+
+# Add new file
+chezmoi add $FILE
+
+# Re-add files if you have edited directly (not using chezmoi edit)
+chezmoi re-add
+
+# View managed files
 ```
 
 ## Linux stuff
