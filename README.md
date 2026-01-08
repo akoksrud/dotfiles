@@ -28,7 +28,15 @@ chezmoi re-add
 
 ## Linux stuff
 ```bash
-sudo apt install nano vim neovim eza bat fd-find fzf 
+sudo apt install nano vim neovim eza bat fd-find fzf
+
+# Unstable Neovim with NvChad
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+sudo apt upgrade
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+# Run :MasonInstallAll command after lazy.nvim finishes downloading plugins.
+# Delete the .git folder from nvim folder.
 ```
 
 ## Windows stuff
