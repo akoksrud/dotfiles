@@ -48,7 +48,7 @@ winget install Microsoft.Powershell Microsoft.Git Notepad++.Notepad++ Starship.S
 `edit $PROFILE`
 
 ```pwsh
-function ls_alF { eza -alF $args }
+function ls_alF { eza -al --group-directories-first --icons=always $args }
 Set-Alias -Name ll -Value ls_alF
 Invoke-Expression (&starship init powershell)
 ```
