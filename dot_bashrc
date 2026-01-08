@@ -92,9 +92,30 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
+
+# If eza is installed, use that instead of ls
+if command -v eza &> /dev/null; then
+    alias ll='eza --icons=always --group-directories-first -alF'
+else
+    alias ll='ls -alF --color=auto'
+fi
+
+# If bat (better cat) is installed, use that instead of cat
+if command -v batcat &> /dev/null; then
+    alias cat='batcat --style=plain --paging=never --color=always'
+fi
+
+# If fd is installed, use it as default source for fzf
+if command -v fdfind &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --exclude .git'
+fi
+
+# If fzf is installed, add some aliases
+if command -v fzf &> /dev/null; then
+    FZF_DEFAULT_OPTS='--ansi --preview "batcat --color=always {}" --height 50% --layout=reverse'
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -121,5 +142,7 @@ if ! shopt -oq posix; then
 fi
 
 # Starship
-# eval "$(starship init bash)"
+if command -v starship &> /dev/null; then
+    eval "$(starship init bash)"
+fi
 
