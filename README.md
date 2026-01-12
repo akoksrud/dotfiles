@@ -28,7 +28,7 @@ chezmoi re-add
 
 ## Linux stuff
 ```bash
-sudo apt install nano vim neovim eza bat fd-find fzf
+sudo apt install nano vim neovim eza bat fd-find fzf gcc unzip
 
 # Unstable Neovim with NvChad
 sudo add-apt-repository ppa:neovim-ppa/unstable
