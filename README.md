@@ -1,34 +1,17 @@
 # dotfiles
 My dotfiles repo
 
-## Chezmoi
-https://www.chezmoi.io/
-
-### Install chezmoi and init from your repo on an empty machine
+## Clone the repo
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
-```
-
-### Chezmoi commands
-```bash
-# Download dotfiles from repo
-chezmoi update
-
-#Edit files
-chezmoi edit $FILE
-
-# Add new file
-chezmoi add $FILE
-
-# Re-add files if you have edited directly (not using chezmoi edit)
-chezmoi re-add
-
-# View managed files
+cd ~
+git clone https://github.com/akoksrud/dotfiles
+cd dotfiles
 ```
 
 ## Linux stuff
 ```bash
 sudo apt install nano vim neovim eza bat fd-find fzf gcc unzip
+bash ./linux-dotfiles.sh
 
 # Unstable Neovim with NvChad
 sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -40,18 +23,27 @@ git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 # Plugins: -> :Mason
 # Cheatsheet: <space>+c+h
 # Themes: <space>+t+h
+
+# Starship (.bashrc includes conditional that runs Sharship if present)
+curl -sS https://starship.rs/install.sh | sh
+mkdir ~/.config
+curl https://starship.rs/presets/toml/gruvbox-rainbow.toml -o ~/.config/gruvbox-rainbow.toml
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
+
+# If you have no nerd-font installed, use this preset instead
+curl https://starship.rs/presets/toml/no-nerd-font.toml -o ~/.config/no-nerd-font.toml
+starship preset no-nerd-font -o ~/.config/starship.toml
 ```
 
 ## Windows stuff
 ```pwsh
+# Apps
 winget install Microsoft.Powershell Microsoft.Git Notepad++.Notepad++ Starship.Starship Microsoft.Edit astral-sh.uv eza-community.eza junegunn.jzj sharkdp.fd Python.Python.3.14 Microsoft.VisualStudioCode Microsoft.PowerToys Microsoft.WindowsTerminal Neovim.Neovim
-```
 
-### $PROFILE (add as dotfile later)
-`edit $PROFILE`
+# Dotfiles script
+.\windows-dotfiles.ps1
 
-```pwsh
-function ls_alF { eza -al --group-directories-first --icons=always $args }
-Set-Alias -Name ll -Value ls_alF
-Invoke-Expression (&starship init powershell)
+# Starship
+Write-Output "Invoke-Expression (&starship init powershell)" >> $PROFILE
+
 ```
