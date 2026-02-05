@@ -77,3 +77,19 @@ winget install Microsoft.Powershell Microsoft.Git Notepad++.Notepad++ Starship.S
 Write-Output "Invoke-Expression (&starship init powershell)" >> $PROFILE
 
 ```
+
+## Create SSH keypair (Windows + Linux)
+```bash
+ssh-keygen -t ed25519 -C "akoksrud_2026"
+```
+
+## Configure Git user (for signed git commit)
+```bash
+git config --global user.name "akoksrud"
+git config --global user.email "andreas@koksrud.no"
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+git config --global gpg.format ssh
+git config --global commit.gpgsign true
+
+# Add your public key to your GitHub account as an SSH key of type "signing"
+```
