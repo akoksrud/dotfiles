@@ -10,7 +10,7 @@ cd dotfiles
 
 ## Linux stuff
 ```bash
-sudo apt install nano vim neovim eza bat fd-find fzf gcc unzip
+sudo apt install nano vim neovim eza bat fd-find fzf gcc unzip git curl
 bash ./linux-dotfiles.sh
 
 # Unstable Neovim with NvChad
