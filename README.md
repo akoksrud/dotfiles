@@ -13,6 +13,10 @@ cd dotfiles
 sudo apt install nano vim neovim eza bat fd-find fzf gcc unzip git curl
 bash ./linux-dotfiles.sh
 
+# UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv install python@3.14
+
 # Unstable Neovim with NvChad
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
@@ -33,6 +37,24 @@ starship preset gruvbox-rainbow -o ~/.config/starship.toml
 # If you have no nerd-font installed, use this preset instead
 curl https://starship.rs/presets/toml/no-nerd-font.toml -o ~/.config/no-nerd-font.toml
 starship preset no-nerd-font -o ~/.config/starship.toml
+```
+
+## Install Podman (Debian/Ubuntu) for lab/test purposes
+```bash
+sudo apt update
+sudo apt install -y podman uidmap slirp4netns fuse-overlayfs
+sudo groupadd podman
+sudo usermod -aG podman $USER
+sudo loginctl enable-linger $(id -u)
+sudo sysctl -w user.max_user_namespaces=28633
+echo "user.max_user_namespaces=28633" | sudo tee /etc/sysctl.d/99-rootless-containers.conf
+sudo sysctl --system
+sudo apt install -y uidmap
+sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "$USER"
+grep "^$USER:" /etc/subuid /etc/subgid
+podman system migrate
+# Reboot for changes to take effect
+sudo reboot now
 ```
 
 ## Install Docker (Debian/Ubuntu) for lab/test purposes
@@ -63,6 +85,24 @@ sudo usermod -aG docker $USER
 # Reboot for changes to take effect
 sudo reboot now
 
+```
+
+## Install GitHub CLI (Debian/Ubuntu)
+```bash
+(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+	&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+	&& cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& sudo mkdir -p -m 755 /etc/apt/sources.list.d \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+
+# Re-login for changes to take effect, then run:
+sudo apt update && sudo apt install gh -y
+
+# Authenticate
+gh auth login
+gh auth setup-git
 ```
 
 ## Windows stuff
