@@ -103,6 +103,8 @@ sudo apt update && sudo apt install gh -y
 # Authenticate
 gh auth login
 gh auth setup-git
+git config --global user.name "akoksrud"
+git config --global user.email "andreas@koksrud.no"
 ```
 
 ## Windows stuff

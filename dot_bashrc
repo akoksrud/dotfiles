@@ -143,6 +143,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+# Make webpages from WSL open in Windows Explorer
+if [ -n "$WSL_DISTRO_NAME" ] || [ -n "$WSL_INTEROP" ]; then
+    export PATH="$HOME/bin:$PATH"
+    export BROWSER="$HOME/bin/wsl-open"
+fi
+
 # Starship
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
